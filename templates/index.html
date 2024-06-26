@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tube Fetch</title>
+    <script type="module" src="{{url_for('static',filename='js/socketio.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <script type="module" src="{{url_for('static',filename='js/jquery.js')}}"></script>
+    <script type="module" src="{{url_for('static',filename='js/script.js')}}"></script>
+</head>
+
+<body>
+    <form method="post">
+        <div class="linkbox">
+            <input type="text" id="link" name="link" placeholder="Enter YouTube link" autocomplete="off" value="{{link}}">
+            <button id="search">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_34_38)">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.88875 10.6969C3.13687 10.6969 0.906069 8.505 0.906069 5.79688C0.906069 3.08875 3.13687 0.892517 5.88875 0.892517C8.64062 0.892517 10.8719 3.08875 10.8719 5.79688C10.8719 8.505 8.64062 10.6969 5.88875 10.6969ZM13.8635 13.2344L10.2502 9.6775C11.1961 8.64937 11.7775 7.29313 11.7775 5.79688C11.7775 2.59437 9.14112 0 5.88875 0C2.63637 0 0 2.59437 0 5.79688C0 8.995 2.63637 11.5894 5.88875 11.5894C7.294 11.5894 8.58288 11.1038 9.59525 10.2944L13.223 13.8643C13.4002 14.0393 13.6867 14.0393 13.8635 13.8643C14.0407 13.6937 14.0407 13.4094 13.8635 13.2344Z"
+                            fill="white" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_34_38">
+                            <rect width="14" height="14" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </button>
+        </div>
+        <div class="container">
+            <div class="video-section">
+                <img src="{{thumbnail}}"  id="thumbnail">
+                <div class="informations">
+                    <div class="infobox">
+                        <div class="total">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_39_43)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.8449 12.4336L16.9252 14.212C17.2259 14.3856 17.3231 14.78 17.1538 15.0733C16.9794 15.3754 16.603 15.4845 16.2936 15.3059L13.1611 13.4974C12.8404 13.7464 12.4375 13.8947 12 13.8947C10.9536 13.8947 10.1053 13.0464 10.1053 12C10.1053 11.175 10.6325 10.4732 11.3684 10.2131V4.42537C11.3684 4.07417 11.6614 3.78947 12 3.78947C12.3488 3.78947 12.6316 4.08366 12.6316 4.42537V10.2131C13.3675 10.4732 13.8947 11.175 13.8947 12C13.8947 12.1492 13.8775 12.2943 13.8449 12.4336ZM12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_39_43">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <label>{{time}}</label>
+                        </div>
+                        <button id="myButton">Downlaod</button>
+                    </div>
+                    <div class="infobox">
+                        <div class="total">
+                            <img src="https://avatars.githubusercontent.com/u/147595129?s=400&u=30e100ab3626809b081ea15475a08bbf0983b57c&v=4"
+                                id="profile">
+                            <label>f3riend</label>
+                        </div>
+                        <div class="links">
+                            <a href="https://github.com/f3riend">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_34_26)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12.0109 3.12937C7.03462 3.12937 3 7.164 3 12.1417C3 16.1231 5.58187 19.5007 9.16313 20.6929C9.61387 20.7754 9.77813 20.4971 9.77813 20.2579C9.77813 20.0445 9.77062 19.4775 9.76612 18.7256C7.25925 19.2701 6.7305 17.5174 6.7305 17.5174C6.32063 16.4767 5.72963 16.1996 5.72963 16.1996C4.91138 15.6401 5.7915 15.6514 5.7915 15.6514C6.696 15.7155 7.17188 16.5802 7.17188 16.5802C7.97587 17.9572 9.28125 17.5594 9.79462 17.3291C9.87675 16.7467 10.1089 16.3496 10.3669 16.1242C8.36588 15.897 6.26175 15.1234 6.26175 11.6704C6.26175 10.6867 6.61313 9.882 7.1895 9.252C7.09688 9.024 6.7875 8.10787 7.27763 6.867C7.27763 6.867 8.03438 6.62475 9.756 7.791C10.4749 7.59112 11.2459 7.491 12.012 7.48762C12.7774 7.491 13.5484 7.59112 14.2684 7.791C15.9889 6.62475 16.7441 6.867 16.7441 6.867C17.2358 8.10787 16.9264 9.024 16.8337 9.252C17.4113 9.882 17.7604 10.6867 17.7604 11.6704C17.7604 15.1324 15.6529 15.894 13.6451 16.1171C13.9691 16.3954 14.2571 16.9451 14.2571 17.7862C14.2571 18.9907 14.2463 19.9627 14.2463 20.2579C14.2463 20.4994 14.4082 20.7799 14.8657 20.6917C18.444 19.4974 21.0236 16.122 21.0236 12.1417C21.0236 7.164 16.9886 3.12937 12.0109 3.12937Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_34_26">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UCucTyjMDe6kKuXJakM89Lzg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_34_31)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M9.58613 15.1033V8.36916C11.9768 9.49407 13.8283 10.5808 16.0181 11.7524C14.212 12.754 11.9768 13.8779 9.58613 15.1033ZM22.9092 5.01994C22.4968 4.47663 21.794 4.05371 21.0457 3.91369C18.8463 3.49603 5.12518 3.49484 2.92698 3.91369C2.32693 4.02618 1.7926 4.29808 1.3336 4.72053C-0.600435 6.51561 0.00559941 16.142 0.471777 17.7014C0.667809 18.3763 0.921228 18.8631 1.24038 19.1826C1.65157 19.6051 2.21456 19.8959 2.86123 20.0264C4.67214 20.401 14.0016 20.6104 21.0074 20.0826C21.6529 19.9701 22.2243 19.6699 22.6749 19.2295C24.4631 17.4416 24.3412 7.27456 22.9092 5.01994Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_34_31">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <label id="head">{{title}}</label>
+            <div class="typebox">
+                <label id="head">Type</label>
+                <label for="fiomat" class="toggle">
+                    <input type="checkbox" name="fiomat" id="fiomat">
+                    <div class="btn"></div>
+                </label>
+            </div>
+        </div>
+        <label id="info">download type switched to mp4</label>
+    </form>
+    <script type="module">
+        $(document).ready(function() {
+            let type = "";
+    $("#search").on("click", function(event) {
+        let link = $("#link").val();
+
+        if (link.includes("playlist?list=") || link.includes("youtu.be") || link.includes("watch?v=")) {
+            
+        } else {
+            event.preventDefault();
+        }
+    });
+});
+
+
+    </script>    
+</body>
+</html>
