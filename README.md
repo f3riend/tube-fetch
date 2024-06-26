@@ -22,6 +22,8 @@ To run the project locally, you'll need:
 - Flask SocketIO
 - PyTube
 
+![TubeFetch](https://github.com/f3riend/tube-fetch/blob/main/assets/tube-fetch.png)
+
 ## Installation
 
 1. Clone the repository:
